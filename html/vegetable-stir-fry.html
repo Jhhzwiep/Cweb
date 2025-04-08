@@ -135,7 +135,7 @@
                 Dit recept is perfect voor een doordeweeks diner en u kunt het aanpassen met uw favoriete groenten. 
                 Serveer het met gestoomde rijst of noedels en u hebt een complete maaltijd.
             </p>
-            <a href="../Index.html" class="back-link">Back to Recipes</a>
+            <a href="../Index.html" class="back-link">Terug naar recepten</a>
         </div>
     </div>
 
@@ -143,19 +143,19 @@
     <div class="modal" id="recipe-modal">
         <div class="modal-content">
             <h2>Groente Roerbak</h2>
-            <p><strong>Berijdingstijd:</strong> 20 minutes</p>
-            <p><strong>Ingredienten:</strong></p>
+            <p><strong>Bereidingstijd:</strong> 20 minuten</p>
+            <p><strong>Ingrediënten:</strong></p>
             <ul>
                 <li>1 kopje broccoliroosjes</li>
                 <li>1 rode paprika, in plakjes gesneden</li>
                 <li>1 wortel, in julienne gesneden</li>
                 <li>1 courgette, in plakjes gesneden</li>
                 <li>2 tl sojasaus</li>
-                <li>1 tl olijf olie</li>
+                <li>1 tl olijfolie</li>
                 <li>1 el gember, geschaafd</li>
                 <li>2 teentjes knoflook, fijngehakt</li>
                 <li>1 tl maizena (optioneel, om te verdikken)</li>
-                <li>zout en peper (optioneel)</li>
+                <li>Zout en peper (optioneel)</li>
             </ul>
             <p><strong>Stappen:</strong></p>
             <ol>
@@ -166,13 +166,12 @@
                 <li>Laat nog 2-3 minuten koken en roer regelmatig.</li>
                 <li>Breng op smaak met zout en peper en serveer met rijst of noedels.</li>
             </ol>
-            <a class="close-modal" id="close-modal">Close</a>
+            <a class="close-modal" id="close-modal">Sluiten</a>
         </div>
     </div>
 
     <script>
-        // JavaScript to handle modal functionality
-        const recipeImage = document.getElementById('recipe-image');
+                const recipeImage = document.getElementById('recipe-image');
         const recipeModal = document.getElementById('recipe-modal');
         const closeModal = document.getElementById('close-modal');
 
@@ -184,10 +183,47 @@
             recipeModal.style.display = 'none';
         });
 
-        // Close modal when clicking outside the content
-        recipeModal.addEventListener('click', (e) => {
+                recipeModal.addEventListener('click', (e) => {
             if (e.target === recipeModal) {
                 recipeModal.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const language = localStorage.getItem('language') || 'dutch';
+
+            const title = document.querySelector('h1');
+            const description = document.querySelector('.recipe-content p');
+            const backLink = document.querySelector('.back-link');
+            const modalTitle = document.querySelector('.modal-content h2');
+            const modalIngredients = document.querySelector('.modal-content ul');
+            const modalSteps = document.querySelector('.modal-content ol');
+
+            if (language === 'english') {
+                title.textContent = 'Vegetable Stir Fry';
+                description.textContent = 'Vegetable Stir Fry is a quick and healthy dish packed with colorful vegetables and a savory sauce. This recipe is perfect for a weeknight dinner and can be customized with your favorite vegetables. Serve it over steamed rice or noodles for a complete meal.';
+                backLink.textContent = 'Back to Recipes';
+                modalTitle.textContent = 'Vegetable Stir Fry';
+                modalIngredients.innerHTML = `
+                    <li>1 cup broccoli florets</li>
+                    <li>1 red bell pepper, sliced</li>
+                    <li>1 carrot, julienned</li>
+                    <li>1 zucchini, sliced</li>
+                    <li>2 tbsp soy sauce</li>
+                    <li>1 tbsp sesame oil</li>
+                    <li>1 tsp ginger, grated</li>
+                    <li>2 garlic cloves, minced</li>
+                    <li>1 tsp cornstarch (optional, for thickening)</li>
+                    <li>Salt and pepper (optional)</li>
+                `;
+                modalSteps.innerHTML = `
+                    <li>Heat sesame oil in a wok or large pan over medium heat.</li>
+                    <li>Add garlic and ginger, and sauté until fragrant.</li>
+                    <li>Add the vegetables and stir-fry for 5-7 minutes until tender-crisp.</li>
+                    <li>Mix soy sauce and cornstarch (if using) in a small bowl, then pour over the vegetables.</li>
+                    <li>Cook for another 2-3 minutes, stirring frequently.</li>
+                    <li>Season with salt and pepper, and serve over rice or noodles.</li>
+                `;
             }
         });
     </script>

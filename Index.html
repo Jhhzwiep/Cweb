@@ -6,10 +6,37 @@
     <title>Recepten</title>
     <link rel="stylesheet" href="Styles/Styles.css">
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
+    <style>
+        .language-selector {
+            margin: 20px;
+        }
+
+        .language-selector button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            margin: 5px;
+            border: 2px solid #4a4a8c;
+            background: white;
+            color: #4a4a8c;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .language-selector button:hover {
+            background: #4a4a8c;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>Recepten</h1>
-    <p>Klik op een afbeelding om het recept te bekijken:</p>
+    <div class="language-selector">
+        <button id="dutch-btn">Dutch</button>
+        <button id="english-btn">English</button>
+    </div>
+
+    <h1 id="page-title">Recepten</h1>
+    <p id="page-description">Klik op een afbeelding om het recept te bekijken:</p>
     <div class="recipe-container">
         <a href="html/spaghetti.html">
             <img src="img/spaghetti.jpg" alt="Spaghetti Bolognese">
@@ -21,8 +48,44 @@
             <img src="img/vegetable-stir-fry.jpg" alt="Vegetable Stir Fry">
         </a>
     </div>
-    <footer>
+    <footer id="footer-text">
         © 2025 ITHUB
     </footer>
+
+    <script>
+        const dutchBtn = document.getElementById('dutch-btn');
+        const englishBtn = document.getElementById('english-btn');
+        const pageTitle = document.getElementById('page-title');
+        const pageDescription = document.getElementById('page-description');
+        const footerText = document.getElementById('footer-text');
+
+        dutchBtn.addEventListener('click', () => {
+            localStorage.setItem('language', 'dutch');
+            pageTitle.textContent = 'Recepten';
+            pageDescription.textContent = 'Klik op een afbeelding om het recept te bekijken:';
+            footerText.textContent = '© 2025 ITHUB';
+        });
+
+        englishBtn.addEventListener('click', () => {
+            localStorage.setItem('language', 'english');
+            pageTitle.textContent = 'Recipes';
+            pageDescription.textContent = 'Click on an image to view the recipe:';
+            footerText.textContent = '© 2025 ITHUB';
+        });
+
+        // Set the initial language based on localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const language = localStorage.getItem('language') || 'dutch';
+            if (language === 'english') {
+                pageTitle.textContent = 'Recipes';
+                pageDescription.textContent = 'Click on an image to view the recipe:';
+                footerText.textContent = '© 2025 ITHUB';
+            } else {
+                pageTitle.textContent = 'Recepten';
+                pageDescription.textContent = 'Klik op een afbeelding om het recept te bekijken:';
+                footerText.textContent = '© 2025 ITHUB';
+            }
+        });
+    </script>
 </body>
 </html>

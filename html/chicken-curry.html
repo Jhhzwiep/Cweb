@@ -68,6 +68,7 @@
             color: white;
         }
 
+        
         .modal {
             display: none; 
             position: fixed;
@@ -135,16 +136,16 @@
                 Dit recept combineert een mix van specerijen, kokosmelk en verse kruiden om een geruststellende en heerlijke maaltijd te creëren. 
                 Serveer het met gestoomde rijst of naanbrood voor een complete ervaring.
             </p>
-            <a href="../Index.html" class="back-link">Back to Recipes</a>
+            <a href="../Index.html" class="back-link">Terug naar recepten</a>
         </div>
     </div>
 
     <!-- Modal -->
     <div class="modal" id="recipe-modal">
         <div class="modal-content">
-            <h2>Kip curry</h2>
-            <p><strong>Berijdingstijd:</strong> 40 minutes</p>
-            <p><strong>Ingredienten:</strong></p>
+            <h2>Kip Curry</h2>
+            <p><strong>Bereidingstijd:</strong> 40 minuten</p>
+            <p><strong>Ingrediënten:</strong></p>
             <ul>
                 <li>500g kip, in stukken gesneden</li>
                 <li>1 ui, fijngehakt</li>
@@ -160,15 +161,14 @@
             </ul>
             <p><strong>Stappen:</strong></p>
             <ol>
-            </ol>
-                <li>Verhit olie in een pan en fruit de ui, knoflook en gember en bak hem licht bruin.</li>
-                <li>Voeg de kipstukjes toe en bak totdat ze lichtbruin zijn.</li>
-                <li> Roer de currypoeder, kurkuma en komijn erdoor en bak 1 minuut mee.</li>
+                <li>Verhit olie in een pan en fruit de ui, knoflook en gember tot ze geuren.</li>
+                <li>Voeg de kipstukjes toe en bak tot ze lichtbruin zijn.</li>
+                <li>Roer de currypoeder, kurkuma en komijn erdoor en bak 1 minuut mee.</li>
                 <li>Voeg de tomaten en kokosmelk toe en laat 20 minuten sudderen.</li>
                 <li>Breng op smaak met zout en peper.</li>
                 <li>Garneer met verse koriander en serveer met rijst of naan.</li>
             </ol>
-            <a class="close-modal" id="close-modal">Close</a>
+            <a class="close-modal" id="close-modal">Sluiten</a>
         </div>
     </div>
 
@@ -190,6 +190,46 @@
         recipeModal.addEventListener('click', (e) => {
             if (e.target === recipeModal) {
                 recipeModal.style.display = 'none';
+            }
+        });
+
+        // Language toggle based on localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const language = localStorage.getItem('language') || 'dutch';
+
+            const title = document.querySelector('h1');
+            const description = document.querySelector('.recipe-content p');
+            const backLink = document.querySelector('.back-link');
+            const modalTitle = document.querySelector('.modal-content h2');
+            const modalIngredients = document.querySelector('.modal-content ul');
+            const modalSteps = document.querySelector('.modal-content ol');
+
+            if (language === 'english') {
+                title.textContent = 'Chicken Curry';
+                description.textContent = 'Chicken Curry is a flavorful and aromatic dish made with tender chicken pieces simmered in a rich, spiced curry sauce. This recipe combines a blend of spices, coconut milk, and fresh herbs to create a comforting and delicious meal. Serve it with steamed rice or naan bread for a complete experience.';
+                backLink.textContent = 'Back to Recipes';
+                modalTitle.textContent = 'Chicken Curry';
+                modalIngredients.innerHTML = `
+                    <li>500g chicken, cut into pieces</li>
+                    <li>1 onion, finely chopped</li>
+                    <li>2 garlic cloves, minced</li>
+                    <li>1 tbsp ginger, grated</li>
+                    <li>2 tbsp curry powder</li>
+                    <li>1 can of coconut milk</li>
+                    <li>2 tomatoes, diced</li>
+                    <li>1 tsp turmeric</li>
+                    <li>1 tsp cumin</li>
+                    <li>Salt and pepper (optional)</li>
+                    <li>Fresh cilantro for garnish</li>
+                `;
+                modalSteps.innerHTML = `
+                    <li>Heat oil in a pan and sauté the onion, garlic, and ginger until fragrant.</li>
+                    <li>Add the chicken pieces and cook until lightly browned.</li>
+                    <li>Stir in the curry powder, turmeric, and cumin, and cook for 1 minute.</li>
+                    <li>Add the tomatoes and coconut milk, and simmer for 20 minutes.</li>
+                    <li>Season with salt and pepper.</li>
+                    <li>Garnish with fresh cilantro and serve with rice or naan.</li>
+                `;
             }
         });
     </script>

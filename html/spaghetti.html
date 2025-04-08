@@ -190,6 +190,44 @@
                 recipeModal.style.display = 'none';
             }
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const language = localStorage.getItem('language') || 'dutch';
+
+            const title = document.querySelector('h1');
+            const description = document.querySelector('.recipe-content p');
+            const backLink = document.querySelector('.back-link');
+            const modalTitle = document.querySelector('.modal-content h2');
+            const modalIngredients = document.querySelector('.modal-content ul');
+            const modalSteps = document.querySelector('.modal-content ol');
+
+            if (language === 'english') {
+                title.textContent = 'Spaghetti Bolognese';
+                description.textContent = 'Spaghetti Bolognese is a classic Italian pasta dish with a rich and savory meat sauce. This recipe combines ground beef, tomatoes, onions, garlic, and a mix of herbs to create a hearty and flavorful meal. Serve it over al dente spaghetti and top with freshly grated Parmesan cheese.';
+                backLink.textContent = 'Back to Recipes';
+                modalTitle.textContent = 'Spaghetti Bolognese';
+                modalIngredients.innerHTML = `
+                    <li>200g spaghetti</li>
+                    <li>250g ground beef</li>
+                    <li>1 chopped tomato</li>
+                    <li>1 onion, finely chopped</li>
+                    <li>2 garlic cloves, minced</li>
+                    <li>1 tsp dried oregano</li>
+                    <li>1 tsp basil</li>
+                    <li>Salt and pepper (optional)</li>
+                    <li>Grated Parmesan cheese (optional)</li>
+                `;
+                modalSteps.innerHTML = `
+                    <li>Cook the spaghetti according to the package instructions.</li>
+                    <li>In a pan, sauté the onion and garlic until lightly golden.</li>
+                    <li>Add the ground beef and cook until browned.</li>
+                    <li>Stir in the chopped tomato, oregano, and basil. Let it simmer for 15 minutes.</li>
+                    <li>Season with salt and pepper.</li>
+                    <li>Serve the spaghetti and sprinkle with Parmesan cheese.</li>
+                `;
+            }
+        });
     </script>
 </body>
 </html>
+``` 
