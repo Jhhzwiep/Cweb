@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>More Recipes</title>
+    <link rel="stylesheet" href="Styles/Styles.css">
+    <link rel="icon" href="img/favicon.png" type="image/x-icon">
+</head>
+<body>
+    <h1 id="page-title">Meer Recepten</h1>
+    <p id="page-description">Klik op een afbeelding om het recept te bekijken:</p>
+    <div class="recipe-container">
+        <a href="html/burger.html">
+            <img src="img/burger.webp" alt="Burger">
+        </a>
+        <a href="html/salad.html">
+            <img src="img/salad.webp" alt="Salad">
+        </a>
+        <a href="html/soup.html">
+            <img src="img/soup.jpg" alt="Soup">
+        </a>
+        <a href="html/pizza.html">
+            <img src="img/pizza.jpg" alt="Pizza">
+        </a>
+        <a href="html/dessert.html">
+            <img src="img/dessert.jpg" alt="Dessert">
+        </a>
+    </div>
+
+    <div class="pagination">
+        <a href="Index.html" class="previous-page">← Previous Page</a>
+    </div>
+
+    <footer id="footer-text">
+        © 2025 ITHUB
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const language = localStorage.getItem('language') || 'dutch';
+            const pageTitle = document.getElementById('page-title');
+            const pageDescription = document.getElementById('page-description');
+            const footerText = document.getElementById('footer-text');
+
+            if (language === 'english') {
+                pageTitle.textContent = 'More Recipes';
+                pageDescription.textContent = 'Click on an image to view the recipe:';
+                footerText.textContent = '© 2025 ITHUB';
+            } else {
+                pageTitle.textContent = 'Meer Recepten';
+                pageDescription.textContent = 'Klik op een afbeelding om het recept te bekijken:';
+                footerText.textContent = '© 2025 ITHUB';
+            }
+        });
+    </script>
+</body>
+</html>

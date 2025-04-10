@@ -27,6 +27,26 @@
             background: #4a4a8c;
             color: white;
         }
+
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination .next-page {
+            font-size: 1rem;
+            color: #4a4a8c;
+            text-decoration: none;
+            border: 2px solid #4a4a8c;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .pagination .next-page:hover {
+            background: #4a4a8c;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -38,22 +58,27 @@
     <h1 id="page-title">Recepten</h1>
     <p id="page-description">Klik op een afbeelding om het recept te bekijken:</p>
     <div class="recipe-container">
-        <a href="html/spaghetti.html">
+        <a href="recipes/spaghetti.html">
             <img src="img/spaghetti.jpg" alt="Spaghetti Bolognese">
         </a>
-        <a href="html/chicken-curry.html">
+        <a href="recipes/chicken-curry.html">
             <img src="img/chicken-curry.jpg" alt="Chicken Curry">
         </a>
-        <a href="html/vegetable-stir-fry.html">
+        <a href="recipes/vegetable-stir-fry.html">
             <img src="img/vegetable-stir-fry.jpg" alt="Vegetable Stir Fry">
         </a>
-        <a href="html/pancakes.html">
+        <a href="recipes/pancakes.html">
             <img src="img/pancakes.jpg" alt="Pancakes">
         </a>
-        <a href="html/lasagna.html">
+        <a href="recipes/lasagna.html">
             <img src="img/lasagna.jpg" alt="Lasagna">
         </a>
     </div>
+
+    <div class="pagination">
+        <a href="recipes-page-2.html" class="next-page">Next Page →</a>
+    </div>
+
     <footer id="footer-text">
         © 2025 ITHUB
     </footer>
