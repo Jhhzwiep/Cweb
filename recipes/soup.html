@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soup</title>
+    <link rel="stylesheet" href="../Styles/Styles.css">
+    <link rel="icon" href="../img/favicon.png" type="image/x-icon">
+    <style>
+        .recipe-page {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe-image {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .recipe-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .recipe-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .recipe-content h1 {
+            font-size: 2.5rem;
+            color: #4a4a8c;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .recipe-content p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-size: 1rem;
+            color: #4a4a8c;
+            text-decoration: none;
+            border: 2px solid #4a4a8c;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #4a4a8c;
+            color: white;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .modal-content h2 {
+            color: #4a4a8c;
+            margin-bottom: 10px;
+        }
+
+        .modal-content ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .modal-content ul li {
+            margin-bottom: 5px;
+        }
+
+        .close-modal {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1rem;
+            color: white;
+            background: #4a4a8c;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .close-modal:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="recipe-page">
+        <div class="recipe-image">
+            <img src="../img/soup.webp" alt="Soup" id="recipe-image">
+        </div>
+        <div class="recipe-content">
+            <h1>Soep</h1>
+            <p>
+                Een warme en troostende soep gemaakt met verse ingrediënten. 
+                Perfect voor een koude dag of als voorgerecht bij een maaltijd.
+            </p>
+            <a href="../recipes-page-2.html" class="back-link">Terug naar recepten</a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="recipe-modal">
+        <div class="modal-content">
+            <h2>Soep</h2>
+            <p><strong>Bereidingstijd:</strong> 30 minuten</p>
+            <p><strong>Ingrediënten:</strong></p>
+            <ul>
+                <li>1 ui, fijngehakt</li>
+                <li>2 wortels, in plakjes</li>
+                <li>2 stengels bleekselderij, in stukjes</li>
+                <li>1 liter groentebouillon</li>
+                <li>2 tomaten, in blokjes</li>
+                <li>1 el olijfolie</li>
+                <li>Zout en peper naar smaak</li>
+            </ul>
+            <p><strong>Stappen:</strong></p>
+            <ol>
+                <li>Verhit de olijfolie in een grote pan en fruit de ui tot deze glazig is.</li>
+                <li>Voeg de wortels en bleekselderij toe en bak 5 minuten mee.</li>
+                <li>Giet de groentebouillon erbij en breng aan de kook.</li>
+                <li>Voeg de tomaten toe en laat 15 minuten sudderen.</li>
+                <li>Breng op smaak met zout en peper.</li>
+                <li>Serveer warm met brood of croutons.</li>
+            </ol>
+            <a class="close-modal" id="close-modal">Sluiten</a>
+        </div>
+    </div>
+
+    <script>
+        const recipeImage = document.getElementById('recipe-image');
+        const recipeModal = document.getElementById('recipe-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        recipeImage.addEventListener('click', () => {
+            recipeModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            recipeModal.style.display = 'none';
+        });
+
+        recipeModal.addEventListener('click', (e) => {
+            if (e.target === recipeModal) {
+                recipeModal.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const language = localStorage.getItem('language') || 'dutch';
+
+            const title = document.querySelector('h1');
+            const description = document.querySelector('.recipe-content p');
+            const backLink = document.querySelector('.back-link');
+            const modalTitle = document.querySelector('.modal-content h2');
+            const modalIngredients = document.querySelector('.modal-content ul');
+            const modalSteps = document.querySelector('.modal-content ol');
+
+            if (language === 'english') {
+                title.textContent = 'Soup';
+                description.textContent = 'A warm and comforting soup made with fresh ingredients. Perfect for a cold day or as a starter for a meal.';
+                backLink.textContent = 'Back to Recipes';
+                modalTitle.textContent = 'Soup';
+                modalIngredients.innerHTML = `
+                    <li>1 onion, finely chopped</li>
+                    <li>2 carrots, sliced</li>
+                    <li>2 celery stalks, chopped</li>
+                    <li>1 liter vegetable broth</li>
+                    <li>2 tomatoes, diced</li>
+                    <li>1 tbsp olive oil</li>
+                    <li>Salt and pepper to taste</li>
+                `;
+                modalSteps.innerHTML = `
+                    <li>Heat the olive oil in a large pot and sauté the onion until translucent.</li>
+                    <li>Add the carrots and celery, and cook for 5 minutes.</li>
+                    <li>Pour in the vegetable broth and bring to a boil.</li>
+                    <li>Add the tomatoes and simmer for 15 minutes.</li>
+                    <li>Season with salt and pepper.</li>
+                    <li>Serve warm with bread or croutons.</li>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

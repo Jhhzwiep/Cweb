@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza</title>
+    <link rel="stylesheet" href="../Styles/Styles.css">
+    <link rel="icon" href="../img/favicon.png" type="image/x-icon">
+    <style>
+        .recipe-page {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe-image {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .recipe-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .recipe-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .recipe-content h1 {
+            font-size: 2.5rem;
+            color: #4a4a8c;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .recipe-content p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-size: 1rem;
+            color: #4a4a8c;
+            text-decoration: none;
+            border: 2px solid #4a4a8c;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #4a4a8c;
+            color: white;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .modal-content h2 {
+            color: #4a4a8c;
+            margin-bottom: 10px;
+        }
+
+        .modal-content ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .modal-content ul li {
+            margin-bottom: 5px;
+        }
+
+        .close-modal {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1rem;
+            color: white;
+            background: #4a4a8c;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .close-modal:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="recipe-page">
+        <div class="recipe-image">
+            <img src="../img/pizza.webp" alt="Pizza" id="recipe-image">
+        </div>
+        <div class="recipe-content">
+            <h1>Pizza</h1>
+            <p>
+                Maak een heerlijke zelfgemaakte pizza met een knapperige korst, verse tomatensaus en je favoriete toppings. 
+                Perfect voor een gezellige avondmaaltijd.
+            </p>
+            <a href="../recipes-page-2.html" class="back-link">Terug naar recepten</a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="recipe-modal">
+        <div class="modal-content">
+            <h2>Pizza</h2>
+            <p><strong>Bereidingstijd:</strong> 1 uur</p>
+            <p><strong>Ingrediënten:</strong></p>
+            <ul>
+                <li>250g bloem</li>
+                <li>150ml water</li>
+                <li>1 tl zout</li>
+                <li>1 tl suiker</li>
+                <li>1 tl droge gist</li>
+                <li>100ml tomatensaus</li>
+                <li>100g geraspte kaas</li>
+                <li>Je favoriete toppings (bijv. paprika, champignons, salami)</li>
+            </ul>
+            <p><strong>Stappen:</strong></p>
+            <ol>
+                <li>Los de gist en suiker op in warm water en laat 5 minuten staan.</li>
+                <li>Voeg de bloem en zout toe en kneed tot een soepel deeg.</li>
+                <li>Laat het deeg 30 minuten rijzen op een warme plek.</li>
+                <li>Rol het deeg uit en leg het op een bakplaat.</li>
+                <li>Besmeer het deeg met tomatensaus en voeg kaas en toppings toe.</li>
+                <li>Bak de pizza 15-20 minuten in een voorverwarmde oven op 220°C.</li>
+            </ol>
+            <a class="close-modal" id="close-modal">Sluiten</a>
+        </div>
+    </div>
+
+    <script>
+        const recipeImage = document.getElementById('recipe-image');
+        const recipeModal = document.getElementById('recipe-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        recipeImage.addEventListener('click', () => {
+            recipeModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            recipeModal.style.display = 'none';
+        });
+
+        recipeModal.addEventListener('click', (e) => {
+            if (e.target === recipeModal) {
+                recipeModal.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const language = localStorage.getItem('language') || 'dutch';
+
+            const title = document.querySelector('h1');
+            const description = document.querySelector('.recipe-content p');
+            const backLink = document.querySelector('.back-link');
+            const modalTitle = document.querySelector('.modal-content h2');
+            const modalIngredients = document.querySelector('.modal-content ul');
+            const modalSteps = document.querySelector('.modal-content ol');
+
+            if (language === 'english') {
+                title.textContent = 'Pizza';
+                description.textContent = 'Make a delicious homemade pizza with a crispy crust, fresh tomato sauce, and your favorite toppings. Perfect for a cozy dinner.';
+                backLink.textContent = 'Back to Recipes';
+                modalTitle.textContent = 'Pizza';
+                modalIngredients.innerHTML = `
+                    <li>250g flour</li>
+                    <li>150ml water</li>
+                    <li>1 tsp salt</li>
+                    <li>1 tsp sugar</li>
+                    <li>1 tsp dry yeast</li>
+                    <li>100ml tomato sauce</li>
+                    <li>100g grated cheese</li>
+                    <li>Your favorite toppings (e.g., bell peppers, mushrooms, salami)</li>
+                `;
+                modalSteps.innerHTML = `
+                    <li>Dissolve the yeast and sugar in warm water and let it sit for 5 minutes.</li>
+                    <li>Add the flour and salt, and knead into a smooth dough.</li>
+                    <li>Let the dough rise for 30 minutes in a warm place.</li>
+                    <li>Roll out the dough and place it on a baking tray.</li>
+                    <li>Spread tomato sauce over the dough and add cheese and toppings.</li>
+                    <li>Bake the pizza for 15-20 minutes in a preheated oven at 220°C.</li>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

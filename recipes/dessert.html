@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strawberry Shortcake</title>
+    <link rel="stylesheet" href="../Styles/Styles.css">
+    <link rel="icon" href="../img/favicon.png" type="image/x-icon">
+    <style>
+        .recipe-page {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .recipe-image {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .recipe-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .recipe-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .recipe-content h1 {
+            font-size: 2.5rem;
+            color: #4a4a8c;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .recipe-content p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-size: 1rem;
+            color: #4a4a8c;
+            text-decoration: none;
+            border: 2px solid #4a4a8c;
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #4a4a8c;
+            color: white;
+        }
+
+        .modal {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: left;
+        }
+
+        .modal-content h2 {
+            color: #4a4a8c;
+            margin-bottom: 10px;
+        }
+
+        .modal-content ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .modal-content ul li {
+            margin-bottom: 5px;
+        }
+
+        .close-modal {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1rem;
+            color: white;
+            background: #4a4a8c;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .close-modal:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="recipe-page">
+        <div class="recipe-image">
+            <img src="../img/dessert.jpg" alt="Strawberry Shortcake" id="recipe-image">
+        </div>
+        <div class="recipe-content">
+            <h1>Aardbeien Shortcake</h1>
+            <p>
+                Een heerlijke en luchtige shortcake met verse aardbeien en slagroom. 
+                Perfect als dessert of traktatie voor een speciale gelegenheid.
+            </p>
+            <a href="../recipes-page-2.html" class="back-link">Terug naar recepten</a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="recipe-modal">
+        <div class="modal-content">
+            <h2>Aardbeien Shortcake</h2>
+            <p><strong>Bereidingstijd:</strong> 40 minuten</p>
+            <p><strong>Ingrediënten:</strong></p>
+            <ul>
+                <li>200g bloem</li>
+                <li>50g suiker</li>
+                <li>1 tl bakpoeder</li>
+                <li>1/2 tl zout</li>
+                <li>100g boter, koud en in blokjes</li>
+                <li>120ml melk</li>
+                <li>250g verse aardbeien, in plakjes</li>
+                <li>200ml slagroom</li>
+                <li>1 el poedersuiker</li>
+            </ul>
+            <p><strong>Stappen:</strong></p>
+            <ol>
+                <li>Verwarm de oven voor op 200°C.</li>
+                <li>Mix de bloem, suiker, bakpoeder en zout in een kom.</li>
+                <li>Wrijf de boter door het bloemmengsel tot het op broodkruim lijkt.</li>
+                <li>Voeg de melk toe en meng tot een deeg.</li>
+                <li>Vorm kleine rondjes van het deeg en leg ze op een bakplaat.</li>
+                <li>Bak 15-20 minuten tot ze goudbruin zijn.</li>
+                <li>Klop de slagroom met de poedersuiker tot zachte pieken.</li>
+                <li>Snijd de shortcakes doormidden, voeg aardbeien en slagroom toe, en serveer.</li>
+            </ol>
+            <a class="close-modal" id="close-modal">Sluiten</a>
+        </div>
+    </div>
+
+    <script>
+        const recipeImage = document.getElementById('recipe-image');
+        const recipeModal = document.getElementById('recipe-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        recipeImage.addEventListener('click', () => {
+            recipeModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            recipeModal.style.display = 'none';
+        });
+
+        recipeModal.addEventListener('click', (e) => {
+            if (e.target === recipeModal) {
+                recipeModal.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const language = localStorage.getItem('language') || 'dutch';
+
+            const title = document.querySelector('h1');
+            const description = document.querySelector('.recipe-content p');
+            const backLink = document.querySelector('.back-link');
+            const modalTitle = document.querySelector('.modal-content h2');
+            const modalIngredients = document.querySelector('.modal-content ul');
+            const modalSteps = document.querySelector('.modal-content ol');
+
+            if (language === 'english') {
+                title.textContent = 'Strawberry Shortcake';
+                description.textContent = 'A delicious and fluffy shortcake with fresh strawberries and whipped cream. Perfect as a dessert or treat for a special occasion.';
+                backLink.textContent = 'Back to Recipes';
+                modalTitle.textContent = 'Strawberry Shortcake';
+                modalIngredients.innerHTML = `
+                    <li>200g flour</li>
+                    <li>50g sugar</li>
+                    <li>1 tsp baking powder</li>
+                    <li>1/2 tsp salt</li>
+                    <li>100g butter, cold and cubed</li>
+                    <li>120ml milk</li>
+                    <li>250g fresh strawberries, sliced</li>
+                    <li>200ml whipped cream</li>
+                    <li>1 tbsp powdered sugar</li>
+                `;
+                modalSteps.innerHTML = `
+                    <li>Preheat the oven to 200°C.</li>
+                    <li>Mix the flour, sugar, baking powder, and salt in a bowl.</li>
+                    <li>Rub the butter into the flour mixture until it resembles breadcrumbs.</li>
+                    <li>Add the milk and mix into a dough.</li>
+                    <li>Shape small rounds of dough and place them on a baking tray.</li>
+                    <li>Bake for 15-20 minutes until golden brown.</li>
+                    <li>Whip the cream with the powdered sugar until soft peaks form.</li>
+                    <li>Slice the shortcakes in half, add strawberries and whipped cream, and serve.</li>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
